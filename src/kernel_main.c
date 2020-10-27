@@ -1,8 +1,19 @@
+#include "../include/uart.h"
 
-int kernel_main(void)
+void kernel_main(void)
 {
+	uart_init();
 
-	while(1);
+	uart_send_string("hello\r\n");
 
-	return 0;
+	uart_send('s');
+	uart_send('h');
+	uart_send('d');
+	// uart_send('\r\n');
+	
+	while(1)
+	{
+		char c = uart_recv();
+		uart_send(c);
+	}
 }
